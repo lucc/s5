@@ -1083,17 +1083,6 @@ class CliClient(CliMixIn, client.S5Client):
             return 127
 
 
-def main(o, inStream=None, outStream=None):
-    """ Invoke the CliClient """
-    callbacks = CliCallbacks(o)
-    client = CliClient(callbacks)
-    if outStream:
-        client.outStream = outStream
-    if inStream:
-        client.inStream = inStream
-    return client.doArguments(o)
-
-
 def parseArgs(*args):
     p = argparse.ArgumentParser(
         description="Command Line Syncing Client",
@@ -1417,6 +1406,17 @@ def parseArgs(*args):
         args = None
 
     return p.parse_args(args)
+
+
+def main(o=parseArgs(), inStream=None, outStream=None):
+    """ Invoke the CliClient """
+    callbacks = CliCallbacks(o)
+    client = CliClient(callbacks)
+    if outStream:
+        client.outStream = outStream
+    if inStream:
+        client.inStream = inStream
+    return client.doArguments(o)
 
 
 class CliCallbacks(callbacks.ConfigCallbacks):

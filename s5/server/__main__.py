@@ -19,7 +19,7 @@ from ..shared import utilcrypto
 from ..shared import crypto
 
 
-def main(argv):
+def main(argv=None):
     if argv is None:
         o = parseArgs()
     else:

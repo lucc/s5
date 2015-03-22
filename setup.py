@@ -9,7 +9,8 @@ setup(
     version='0.0',
     packages=find_packages(),
     entry_points={
-        'console_scripts': ['s5server = s5.server', 's5 = s5.client']
+        'console_scripts': ['s5server = s5.server.__main__:main',
+                            's5 = s5.client.cli:main']
     },
     install_requires=['pycrypto'],
 )
